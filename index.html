@@ -19,7 +19,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:44px 44px}
 button{font-family:inherit;color:inherit}:focus-visible{outline:2px dashed var(--terra);outline-offset:2px}
 ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:var(--line);border-radius:5px}
-/* шапка */
 .mast{position:sticky;top:0;z-index:60;background:rgba(244,238,225,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .mast-in{max-width:1340px;margin:0 auto;padding:9px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px}
 .brand{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
@@ -29,7 +28,6 @@ button{font-family:inherit;color:inherit}:focus-visible{outline:2px dashed var(-
 .ibtn{width:36px;height:36px;border-radius:9px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer;transition:.15s}
 .ibtn:hover{border-color:var(--terra);color:var(--terra)}
 .ibtn.arm{border-color:var(--red);color:var(--red)}
-/* каркас */
 main{position:relative;z-index:1}
 .screen{display:none;padding:26px 0 80px}.screen.active{display:block;animation:scrIn .35s ease}
 @keyframes scrIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -41,14 +39,12 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 .lead{font-size:16px;color:var(--ink2);max-width:62ch}
 .lback{display:inline-flex;align-items:center;gap:7px;background:none;border:none;cursor:pointer;font:600 13px var(--fb);color:var(--ink2);padding:6px 0;margin-bottom:14px;transition:.15s}
 .lback:hover{color:var(--terra);transform:translateX(-3px)}
-/* кнопки */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border:none;border-radius:9px;font:600 14.5px var(--fb);cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
 .btn:active{transform:scale(.97)}
 .bp{background:var(--terra);color:#FFFDF7}.bp:hover{background:#A8430F;transform:translateY(-1px);box-shadow:0 8px 20px rgba(200,85,31,.3)}
 .bd{background:var(--ink);color:var(--paper)}.bd:hover{background:#0e1526;transform:translateY(-1px)}
 .bg{background:transparent;border:1.5px solid var(--line)}.bg:hover{border-color:var(--ink);transform:translateY(-1px)}
 .blg{padding:15px 30px;font-size:16.5px;border-radius:11px}.bsm{padding:8px 14px;font-size:13px}
-/* герой */
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;min-height:calc(100vh - 160px);padding-top:26px}
 .hcta{margin:26px 0 30px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
 .hmeta{display:flex;border-left:1px solid var(--line)}
@@ -67,7 +63,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 #hp1{stroke:var(--ink)}#hp2{stroke:var(--gold)}#hp3{stroke:var(--terra)}
 @keyframes dr{0%{stroke-dashoffset:700}45%,75%{stroke-dashoffset:0}100%{stroke-dashoffset:700}}
 .acap{font:500 11px var(--fm);color:var(--ink2);text-align:center;margin-top:10px}
-/* уровень 1 */
 .l1p{display:flex;align-items:center;gap:14px;margin:22px 0 4px}
 .l1d{display:flex;gap:10px}
 .ld{width:13px;height:13px;transform:rotate(45deg);border:2px solid var(--line);background:var(--card);transition:.3s}
@@ -90,7 +85,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 .p2ic.g{background:var(--gold);color:#FFFDF7}
 .panel2 b{font-size:15.5px}.panel2 p{font-size:13px;color:var(--ink2)}
 .panel2 .btn{margin-left:auto}
-/* пары */
 .ph{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
 .ptr{display:flex;align-items:center;gap:16px}
 .part{width:56px;height:70px;flex-shrink:0}.part svg{width:100%;height:100%}
@@ -111,7 +105,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 .pchk{position:absolute;top:-9px;right:-9px;width:22px;height:22px;border-radius:50%;background:var(--pc);color:#FFFDF7;display:grid;place-items:center}
 @keyframes shk{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-6px)}40%,60%{transform:translateX(6px)}}
 .bhint{font:500 12px var(--fm);color:var(--ink2)}
-/* уровень 2 */
 .ahead{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;flex-wrap:wrap}
 .adots{display:flex;align-items:center;gap:8px;padding-bottom:8px}
 .adot{width:30px;height:30px;transform:rotate(45deg);border:2px solid var(--line);background:var(--card);display:grid;place-items:center;flex-shrink:0}
@@ -155,7 +148,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 .sbar{display:flex;gap:9px;margin-top:12px;flex-wrap:wrap}
 .sbar .btn{flex:1;min-width:105px}
 .stg.shake{animation:shk .45s}
-/* оверлеи */
 .ov{position:fixed;inset:0;z-index:400;background:rgba(26,34,56,.55);backdrop-filter:blur(4px);display:grid;place-items:center;padding:22px;opacity:0;visibility:hidden;transition:.25s}
 .ov.show{opacity:1;visibility:visible}
 .rc{position:relative;background:var(--paper);border-radius:16px;padding:36px 40px 32px;text-align:center;max-width:430px;width:100%;box-shadow:var(--shl);animation:cin .5s cubic-bezier(.2,1.5,.4,1)}
@@ -173,7 +165,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 .hseq{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px;font:500 12.5px var(--fm);margin-bottom:14px}
 .hl{padding:3px 0 3px calc(var(--d,0)*20px)}
 .mact{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
-/* финал */
 .fwrap{max-width:760px;margin:0 auto;text-align:center;padding-top:22px}
 .fbig{display:inline-block;transform:scale(1.5);margin:12px 0 20px;filter:drop-shadow(0 14px 26px rgba(176,136,40,.45))}
 .fbig svg{animation:sw 4s ease-in-out infinite}
@@ -184,7 +175,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 .fm .stars svg{width:12px;height:12px}
 .fsign{margin-top:38px;font:700 20px var(--fh)}
 .fsign span{font:500 11px var(--fm);color:var(--ink2);letter-spacing:.15em;text-transform:uppercase}
-/* прочее */
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);z-index:600;background:var(--ink);color:var(--paper);padding:13px 20px;border-radius:10px;font:500 13.5px var(--fb);display:flex;align-items:center;gap:10px;max-width:min(92vw,540px);opacity:0;visibility:hidden;transition:.3s;box-shadow:var(--shl)}
 .toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .toast i{display:inline-flex;flex-shrink:0}.toast.success i{color:#7CC47F}.toast.error i{color:#F0A59A}
@@ -195,8 +185,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 @media(max-width:820px){.cgrid{grid-template-columns:1fr}.board{gap:34px}.agrid{grid-template-columns:1fr}.stg{grid-column:auto}}
 @media(max-width:640px){.board{grid-template-columns:1fr;gap:12px}#plinks{display:none}.brand span{display:none}.hmeta b{font-size:24px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-
-/* ====== PERO QUEST V2 ====== */
 .hint-counter{display:inline-flex;align-items:center;margin-left:8px;padding:4px 8px;border-radius:99px;background:#FDF3D9;color:var(--gold);font:700 10px var(--fm);letter-spacing:.04em}
 .atgt{box-shadow:0 5px 18px rgba(26,34,56,.06)}
 .atgt:before{content:'Твоя задача';display:block;position:absolute;transform:translateY(-27px);font:700 9px var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
@@ -227,7 +215,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 .insert-line{height:6px;margin:0 6px;border-radius:99px;transition:.1s}
 .insert-line.active{background:var(--terra);box-shadow:0 0 0 3px rgba(200,85,31,.12)}
 @media(max-width:700px){.pltools{opacity:1}.pedit{width:44px}.pl{gap:5px}}
-
 @media(max-width:700px){.pen-help{grid-template-columns:1fr}.atgt:before{display:none}.atgt{margin-top:18px}}
 </style>
 </head>
@@ -246,7 +233,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 </div></header>
 
 <main>
-<!-- СТАРТ -->
 <section class="screen active" id="scr-start"><div class="hero wrapw">
   <div>
     <div class="tag">Rittel School · интерактивный квест</div>
@@ -283,7 +269,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
   </div>
 </div></section>
 
-<!-- КОСТЮМЫ -->
 <section class="screen" id="scr-costumes"><div class="wrap">
   <button class="lback" id="bk1"><span>← На главную</span></button>
   <div class="tag">Уровень 1 · найди пары</div>
@@ -294,7 +279,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
   <div class="panel2" id="panel2"></div>
 </div></section>
 
-<!-- ПАРЫ -->
 <section class="screen" id="scr-pairs"><div class="wrap">
   <button class="lback" id="bk2"><span>← К костюмам</span></button>
   <div class="ph">
@@ -316,7 +300,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
   <p class="bhint">выбери термин слева и его определение справа — правильность пары проверяется сразу</p>
 </div></section>
 
-<!-- АЛГОРИТМЫ -->
 <section class="screen" id="scr-algo"><div class="wrap wrapw">
   <button class="lback" id="bk3"><span>← К костюмам</span></button>
   <div class="ahead">
@@ -327,7 +310,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
     <div><p id="atask"></p><p class="acap" id="acap"></p></div>
     <div style="display:flex;gap:8px;flex-shrink:0">
       <button class="btn bg bsm" id="btn-hint"></button>
-      
     </div>
   </div>
   <div class="agrid" id="agrid">
@@ -346,7 +328,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
   </div>
 </div></section>
 
-<!-- ФИНАЛ -->
 <section class="screen" id="scr-final"><div class="fwrap">
   <div class="tag" style="justify-content:center">Rittel School · диплом</div>
   <div class="fbig" id="fmedal"></div>
@@ -376,7 +357,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 <div class="ov" id="ovh"><div class="modal">
   <h3>Подсказка <span id="hint-counter" class="hint-counter"></span></h3><div id="hbody"></div>
   <div class="mact">
-    
     <button class="btn bg bsm" id="hclose"><span>Закрыть</span></button>
   </div>
 </div></div>
@@ -385,7 +365,6 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 
 <script>
 'use strict';
-/* ============ УТИЛИТЫ ============ */
 const RAD=Math.PI/180,TAU=Math.PI*2,$=id=>document.getElementById(id);
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
@@ -393,7 +372,6 @@ const cen=p=>({x:avg(p.map(q=>q.x)),y:avg(p.map(q=>q.y))});
 const fmtT=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 
-/* ============ ИКОНКИ ============ */
 const IC={
 play:'<path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/>',
 stop:'<rect x="6.5" y="6.5" width="11" height="11" rx="2" fill="currentColor" stroke="none"/>',
@@ -438,7 +416,6 @@ function medal(inner,c){
 }
 const starRow=n=>[0,1,2].map(i=>'<span class="'+(i<n?'on':'')+'">'+icon('star',22)+'</span>').join('');
 
-/* ============ ДАННЫЕ ============ */
 const ART={
 tz:'<svg viewBox="0 0 120 150"><rect x="24" y="34" width="72" height="102" rx="6" fill="#C8551F"/><rect x="24" y="34" width="72" height="16" fill="#A8430F"/><path d="M60 62l11 16-11 16-11-16z" fill="#F4EEE1" stroke="#1A2238" stroke-width="1.6"/><path d="M60 94l11 16-11 16-11-16z" fill="none" stroke="#F4EEE1" stroke-width="2"/><path d="M36 128h48" stroke="#F4EEE1" stroke-width="2" stroke-dasharray="3 4"/></svg>',
 cu:'<svg viewBox="0 0 120 150"><path d="M44 26h32l20 96H24z" fill="#2A6F6A" stroke="#1A2238" stroke-width="1.6"/><path d="M50 34l4 84M60 34v84M70 34l-4 84" stroke="#F4EEE1" stroke-width="1.6"/><path d="M24 122l12 12 12-12 12 12 12-12 12 12 12-12" fill="none" stroke="#D9B45A" stroke-width="3"/><circle cx="60" cy="20" r="6" fill="#D9B45A"/></svg>',
@@ -467,7 +444,6 @@ eg:{name:'Египет',type:'галабея с нубийскими узора�
  ['Алгоритм','конечная последовательность точных команд','list']]}};
 const ORDER=['tz','cu','eg'];
 
-/* ============ ЗВУК ============ */
 let AC=null,muted=false;
 function beep(f,d,type,g,when){if(muted)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();
 const t=AC.currentTime+(when||0),o=AC.createOscillator(),v=AC.createGain();
@@ -478,7 +454,6 @@ ok:()=>{beep(523,.12,'sine',.11);beep(659,.12,'sine',.11,.09);beep(784,.22,'sine
 no:()=>beep(170,.2,'sawtooth',.07),
 win:()=>[523,659,784,1046].forEach((f,i)=>beep(f,.24,'triangle',.11,i*.12))};
 
-/* ============ КОНФЕТТИ ============ */
 const fx=$('fx'),fc=fx.getContext('2d');let parts=[];
 function sizeFx(){fx.width=innerWidth;fx.height=innerHeight}
 sizeFx();addEventListener('resize',()=>{sizeFx();drawLinks()});
@@ -494,52 +469,36 @@ fc.save();fc.translate(p.x,p.y);fc.rotate(p.r);fc.globalAlpha=Math.min(1,p.l*3);
 fc.fillStyle=p.c;fc.fillRect(-p.w/2,-p.h/2,p.w,p.h);fc.restore()}
 requestAnimationFrame(tick)})();
 
-/* ============ СОСТОЯНИЕ ============ */
 const S={done:{},cur:null,matched:[],err:0,errTotal:0,t0:0,timer:null,
 step:0,stepsDone:new Set(),speed:1,muted:false,armR:false,rewardCb:null,hintUsed:Array(6).fill(0)};
 let program=[];
 const HINTS=[
- [
-  ["Сначала — состояние пера", "Посмотри на стартовую точку. Тебе нужно оставить линию на сцене. Подумай: перо сейчас должно рисовать или просто перемещаться?"],
+ [["Сначала — состояние пера", "Посмотри на стартовую точку. Тебе нужно оставить линию на сцене. Подумай: перо сейчас должно рисовать или просто перемещаться?"],
   ["Теперь — один шаг", "Найди в палитре команду движения. Не спеши: сначала выбери, сколько шагов должен пройти один отрезок, затем запусти и посмотри на длину."],
-  ["Проверь себя", "Если отрезок получился не той длины, измени число в самом блоке программы. Попробуй исправить алгоритм сам, не собирая его заново."]
- ],
- [
-  ["Ищи повтор", "Круг состоит не из одной длинной линии, а из множества маленьких одинаковых действий. Попробуй назвать два действия, которые повторяются."],
+  ["Проверь себя", "Если отрезок получился не той длины, измени число в самом блоке программы. Попробуй исправить алгоритм сам, не собирая его заново."]],
+ [["Ищи повтор", "Круг состоит не из одной длинной линии, а из множества маленьких одинаковых действий. Попробуй назвать два действия, которые повторяются."],
   ["Собери маленький фрагмент", "Добавь в программу один короткий шаг и один небольшой поворот. Запусти его. Что происходит с направлением пера?"],
-  ["Проверь полный оборот", "Чтобы получить замкнутую фигуру, направление пера должно вернуться к исходному. Подумай, сколько одинаковых поворотов для этого понадобится и какой размер шага даст достаточно гладкую форму."]
- ],
- [
-  ["Раздели стороны на пары", "У прямоугольника есть длинные и короткие стороны. Попробуй сначала собрать только два соседних участка и посмотри, где оказался карандаш."],
+  ["Проверь полный оборот", "Чтобы получить замкнутую фигуру, направление пера должно вернуться к исходному. Подумай, сколько одинаковых поворотов для этого понадобится и какой размер шага даст достаточно гладкую форму."]],
+ [["Раздели стороны на пары", "У прямоугольника есть длинные и короткие стороны. Попробуй сначала собрать только два соседних участка и посмотри, где оказался карандаш."],
   ["Угол важнее количества блоков", "После каждой стороны нужно изменить направление. Какой поворот сделает следующий участок перпендикулярным предыдущему?"],
-  ["Найди повторяемую часть", "Две длинные стороны одинаковы, две короткие тоже одинаковы. Подумай, можно ли один и тот же набор команд выполнить несколько раз вместо ручного повторения."]
- ],
- [
-  ["Сравни три стороны", "Равносторонний треугольник требует трёх одинаковых отрезков. Сначала добейся правильной длины одного отрезка."],
+  ["Найди повторяемую часть", "Две длинные стороны одинаковы, две короткие тоже одинаковы. Подумай, можно ли один и тот же набор команд выполнить несколько раз вместо ручного повторения."]],
+ [["Сравни три стороны", "Равносторонний треугольник требует трёх одинаковых отрезков. Сначала добейся правильной длины одного отрезка."],
   ["Посмотри на направление", "После первого отрезка перу нужно повернуть так, чтобы следующий шёл под нужным углом. Попробуй определить внешний угол по рисунку."],
-  ["Сделай один цикл", "Когда один отрезок и один поворот работают правильно, помести их в повторение. Число повторений выбери сам из количества сторон фигуры."]
- ],
- [
-  ["Ромб — не квадрат", "Все четыре стороны должны быть равными. Начни с одного отрезка длины задания, затем проверь, получится ли замкнуть фигуру с одинаковыми сторонами."],
+  ["Сделай один цикл", "Когда один отрезок и один поворот работают правильно, помести их в повторение. Число повторений выбери сам из количества сторон фигуры."]],
+ [["Ромб — не квадрат", "Все четыре стороны должны быть равными. Начни с одного отрезка длины задания, затем проверь, получится ли замкнуть фигуру с одинаковыми сторонами."],
   ["Два разных поворота", "У ромба соседние внешние углы не одинаковы. Попробуй чередовать два поворота и посмотри, когда траектория начинает возвращаться к старту."],
-  ["Проверь признак фигуры", "Если четыре угла стали прямыми, получился квадрат. Измени повороты так, чтобы стороны остались равными, но углы стали разными."]
- ],
- [
-  ["Сначала один ромб", "Не собирай всю ленту сразу. Добейся, чтобы один ромб получался правильно — это будет твой маленький раппорт."],
+  ["Проверь признак фигуры", "Если четыре угла стали прямыми, получился квадрат. Измени повороты так, чтобы стороны остались равными, но углы стали разными."]],
+ [["Сначала один ромб", "Не собирай всю ленту сразу. Добейся, чтобы один ромб получался правильно — это будет твой маленький раппорт."],
   ["Отдели рисунок от перехода", "После одного ромба следующий должен начинаться отдельно. Подумай, когда перу нельзя оставлять след, и как далеко нужно переместиться."],
-  ["Теперь — внешний повтор", "Представь: внутри повторяется построение одного ромба, снаружи повторяется вся эта конструкция несколько раз. Какой блок должен отвечать за каждый уровень повторения?"]
- ]
+  ["Теперь — внешний повтор", "Представь: внутри повторяется построение одного ромба, снаружи повторяется вся эта конструкция несколько раз. Какой блок должен отвечать за каждый уровень повторения."]]
 ];
 
-
-/* ============ ТОСТ ============ */
 let toastTO=null;
 function toast(msg,type){const t=$('toast');
 t.innerHTML='<i>'+(type==='error'?icon('xc',18):icon('check',18))+'</i><span>'+msg+'</span>';
 t.className='toast show '+(type||'success');clearTimeout(toastTO);
 toastTO=setTimeout(()=>t.classList.remove('show'),3200)}
 
-/* ============ НАВИГАЦИЯ ============ */
 function go(name){
   if(S.timer){clearInterval(S.timer);S.timer=null}
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -548,7 +507,6 @@ function go(name){
   if(name==='algo')initAlgo();
 }
 
-/* ============ УРОВЕНЬ 1: КОСТЮМЫ ============ */
 function updateCostumes(){
   const n=Object.keys(S.done).length;
   $('l1d').innerHTML=ORDER.map(k=>'<span class="ld'+(S.done[k]?' on':'')+'"></span>').join('');
@@ -566,7 +524,6 @@ function updateCostumes(){
   const b=$('gol2');if(b)b.onclick=()=>{SND.click();go('algo')};
 }
 
-/* ============ УРОВЕНЬ 1: ПАРЫ ============ */
 function openPairs(k){
   S.cur=k;S.matched=[];S.err=0;S.t0=Date.now();
   const c=COST[k];
@@ -649,7 +606,6 @@ function completeCostume(){
   }),350);
 }
 
-/* ============ НАГРАДА ============ */
 function showReward(o){
   $('rmed').innerHTML=medal(o.shape,o.color);
   $('rk').textContent=o.kicker;$('rt').textContent=o.title;$('rr').textContent=o.text;
@@ -657,11 +613,10 @@ function showReward(o){
   $('rsa').innerHTML=(o.stats||[]).map(s=>'<span><i>'+icon(s[0],15)+'</i>'+s[1]+'</span>').join('');
   S.rewardCb=o.cb;$('ovr').classList.add('show');
 }
- $('rokc').onclick=()=>{SND.click();$('ovr').classList.remove('show');
+$('rokc').onclick=()=>{SND.click();$('ovr').classList.remove('show');
   const cb=S.rewardCb;S.rewardCb=null;if(cb)cb()};
 addEventListener('keydown',e=>{if(e.key==='Enter'&&$('ovr').classList.contains('show'))$('rokc').click()});
 
-/* ============ УРОВЕНЬ 2: БЛОКИ ============ */
 const BLOCKS=[
  {k:'flag',cat:'ev',ic:'flag',t:'когда ⚑ нажат'},
  {k:'erase',cat:'pen',ic:'eraser',t:'стереть всё'},
@@ -676,67 +631,101 @@ const CATN={pen:'перо',mot:'движение',ctl:'циклы',ev:'собы�
 const CATC={pen:'c-pen',mot:'c-mot',ctl:'c-ctl',ev:'c-ev'};
 const labelOf=b=>{const d=BLOCKS.find(x=>x.k===b.k);return b.n!==undefined?d.t+' '+b.n+' '+d.u:d.t};
 
-/* шаги уровня 2 */
-const sidesOf=s=>{const r=[];for(let i=1;i<s.pts.length;i++)r.push(dist(s.pts[i-1],s.pts[i]));return r};
-function anglesOf(s){const p=s.pts,n=p.length-1,res=[];
-  for(let i=0;i<n;i++){const pr=p[(i-1+n)%n],cu=p[i],nx=p[(i+1)%n];
+/* ===== ИСПРАВЛЕННЫЙ АНАЛИЗ ===== */
+function sidesOf(s){const r=[];for(let i=1;i<s.pts.length;i++)r.push(dist(s.pts[i-1],s.pts[i]));return r}
+function anglesOf(s){
+  const p=s.pts,n=p.length-1,res=[];
+  for(let i=0;i<n;i++){
+    const pr=p[(i-1+n)%n],cu=p[i],nx=p[(i+1)%n];
     const a1=Math.atan2(pr.y-cu.y,pr.x-cu.x),a2=Math.atan2(nx.y-cu.y,nx.x-cu.x);
-    let d=Math.abs(a2-a1)/RAD;if(d>180)d=360-d;res.push(d)}return res}
+    let d=Math.abs(a2-a1)/RAD;if(d>180)d=360-d;
+    res.push(d);
+  }
+  return res;
+}
 function analyze(tr){
   const strokes=tr.strokes.filter(s=>s.pts.length>1),closed=[],sides=[];
-  for(const s of strokes){const n=s.pts.length-1;
-    if(n>=3&&dist(s.pts[0],s.pts[n])<14)closed.push(s);
-    sides.push(...sidesOf(s))}
+  for(const s of strokes){
+    const n=s.pts.length-1;
+    if(n>=3&&dist(s.pts[0],s.pts[n])<20)closed.push(s);
+    sides.push(...sidesOf(s));
+  }
   return {strokes,closed,sides,turnSum:tr.turns.reduce((a,b)=>a+b,0)};
 }
+
 const CHK={
-line:a=>{if(!a.sides.length)return[0,'Перо не опустилось или движения нет. Добавь «опустить перо» и «идти 100 шагов».'];
-  if(a.sides.length>1)return[0,'Линия должна быть одним движением, а получилось '+a.sides.length+'.'];
-  const d=a.sides[0];if(Math.abs(d-100)>15)return[0,'Длина линии — '+Math.round(d)+' шагов, а нужно 100.'];
-  return[1,'']},
-circle:a=>{if(a.strokes.length!==1)return[0,'Лишние линии — оставь одну фигуру.'];
+line:a=>{
+  if(!a.sides.length)return[0,'Перо не опустилось или движения нет. Добавь «опустить перо» и «идти 100 шагов».'];
+  if(a.strokes.length>1)return[0,'Линия должна быть одним движением, а получилось '+a.strokes.length+'.'];
+  const d=a.sides[0];
+  if(Math.abs(d-100)>20)return[0,'Длина линии — '+Math.round(d)+' шагов, а нужно 100.'];
+  return[1,''];
+},
+circle:a=>{
+  if(a.strokes.length!==1)return[0,'Лишние линии — оставь одну фигуру.'];
   if(!a.closed.length)return[0,'Круг не замкнут — сумма поворотов должна дать 360°.'];
   const n=a.closed[0].pts.length-1;
   if(n<12)return[0,'Слишком мало сторон ('+n+') — строй круг короткими шагами: 36 раз «идти 10, повернуть 10°».'];
-  const mx=Math.max(...a.sides),mn=Math.min(...a.sides);
-  if(mx/mn>1.8)return[0,'Стороны слишком разные — делай шаги одинаковой длины.'];
-  return[1,'']},
-rect:a=>{if(a.strokes.length!==1)return[0,'Лишние линии — оставь одну фигуру.'];
+  const s=a.sides.filter(x=>x>0);
+  const mx=Math.max(...s),mn=Math.min(...s);
+  if(mx/mn>2.5)return[0,'Стороны слишком разные — делай шаги одинаковой длины.'];
+  return[1,''];
+},
+rect:a=>{
+  if(a.strokes.length!==1)return[0,'Лишние линии — оставь одну фигуру.'];
   if(!a.closed.length)return[0,'Прямоугольник не замкнут — вернись в начальную точку.'];
   const c=a.closed[0],n=c.pts.length-1;
   if(n!==4)return[0,'У прямоугольника 4 стороны, а получилось '+n+'.'];
-  if(anglesOf(c).some(x=>Math.abs(x-90)>10))return[0,'Углы не прямые — поворачивай ровно на 90°.'];
-  const s=sidesOf(c).sort((x,y)=>x-y);
-  if(!(s[0]>40&&s[0]<80))return[0,'Короткая сторона — '+Math.round(s[0])+' шагов, а нужно 60.'];
-  if(!(s[3]>80&&s[3]<125))return[0,'Длинная сторона — '+Math.round(s[3])+' шагов, а нужно 100.'];
-  if(s[2]-s[1]>25)return[0,'Стороны попарно неравны.'];
-  return[1,'']},
-tri:a=>{if(a.strokes.length!==1)return[0,'Лишние линии — оставь одну фигуру.'];
+  const angs=anglesOf(c);
+  if(angs.some(x=>Math.abs(x-90)>15))return[0,'Углы не прямые — поворачивай ровно на 90°. Получились углы: '+angs.map(x=>Math.round(x)).join('°, ')+'°.'];
+  const s=sidesOf(c).sort((x,y)=>x-y); // [короткая, короткая, длинная, длинная]
+  const short1=s[0],short2=s[1],long1=s[2],long2=s[3];
+  // проверяем равенство пар
+  if(Math.abs(short2-short1)>12)return[0,'Короткие стороны не равны: '+Math.round(short1)+' и '+Math.round(short2)+'.'];
+  if(Math.abs(long2-long1)>12)return[0,'Длинные стороны не равны: '+Math.round(long1)+' и '+Math.round(long2)+'.'];
+  // проверяем сами длины
+  const shortAvg=(short1+short2)/2,longAvg=(long1+long2)/2;
+  if(shortAvg<40||shortAvg>80)return[0,'Короткая сторона — '+Math.round(shortAvg)+' шагов, а нужно 60.'];
+  if(longAvg<80||longAvg>125)return[0,'Длинная сторона — '+Math.round(longAvg)+' шагов, а нужно 100.'];
+  return[1,''];
+},
+tri:a=>{
+  if(a.strokes.length!==1)return[0,'Лишние линии — оставь одну фигуру.'];
   if(!a.closed.length)return[0,'Треугольник не замкнут — вернись в начальную точку.'];
   const c=a.closed[0],n=c.pts.length-1;
   if(n!==3)return[0,'У треугольника 3 стороны, а получилось '+n+'.'];
   const s=sidesOf(c).sort((x,y)=>x-y);
-  if(s[2]/s[0]>1.2)return[0,'Треугольник должен быть равносторонним: стороны '+Math.round(s[0])+' и '+Math.round(s[2])+'.'];
-  return[1,'']},
-rhomb:a=>{if(a.strokes.length!==1)return[0,'Лишние линии — оставь одну фигуру.'];
+  if(s[2]/s[0]>1.25)return[0,'Треугольник должен быть равносторонним: стороны '+Math.round(s[0])+' и '+Math.round(s[2])+'.'];
+  if(s[0]<80||s[0]>125)return[0,'Сторона — '+Math.round(s[0])+' шагов, а нужно 100.'];
+  return[1,''];
+},
+rhomb:a=>{
+  if(a.strokes.length!==1)return[0,'Лишние линии — оставь одну фигуру.'];
   if(!a.closed.length)return[0,'Ромб не замкнут — вернись в начальную точку.'];
   const c=a.closed[0],n=c.pts.length-1;
   if(n!==4)return[0,'У ромба 4 стороны, а получилось '+n+'.'];
   const s=sidesOf(c),mx=Math.max(...s),mn=Math.min(...s);
-  if(mx/mn>1.2)return[0,'Стороны ромба должны быть равными.'];
+  if(mx/mn>1.25)return[0,'Стороны ромба должны быть равными: '+s.map(x=>Math.round(x)).join(', ')+'.'];
   const av=(mx+mn)/2;
-  if(av<25||av>60)return[0,'Сторона ромба — '+Math.round(av)+' шагов, а нужно 40.'];
-  if(anglesOf(c).every(x=>Math.abs(x-90)<10))return[0,'Это квадрат. У ромба соседние углы разные — поворачивай на 60° и 120° .'];
-  return[1,'']},
-band:a=>{if(a.closed.length<3)return[0,'Ромбов в ленте — '+a.closed.length+', а нужно 3. Используй внешний цикл.'];
+  if(av<25||av>65)return[0,'Сторона ромба — '+Math.round(av)+' шагов, а нужно 40.'];
+  const angs=anglesOf(c);
+  if(angs.every(x=>Math.abs(x-90)<15))return[0,'Это квадрат. У ромба соседние углы разные — поворачивай на 60° и 120°.'];
+  return[1,''];
+},
+band:a=>{
+  if(a.closed.length<3)return[0,'Ромбов в ленте — '+a.closed.length+', а нужно 3. Используй внешний цикл.'];
   if(a.closed.length>3)return[0,'Ромбов больше трёх — сделай ровно 3.'];
-  const ok=a.closed.every(c=>{const n=c.pts.length-1;if(n!==4)return false;
-    const s=sidesOf(c);return Math.max(...s)/Math.min(...s)<1.2&&Math.min(...s)>25&&Math.max(...s)<60});
+  const ok=a.closed.every(c=>{
+    const n=c.pts.length-1;if(n!==4)return false;
+    const s=sidesOf(c);return Math.max(...s)/Math.min(...s)<1.25&&Math.min(...s)>25&&Math.max(...s)<65;
+  });
   if(!ok)return[0,'Каждый элемент ленты — ромб со стороной 40.'];
   const cs=a.closed.map(c=>cen(c.pts)).sort((p,q)=>p.x-q.x);
-  const gap=cs[1].x-cs[0].x;
-  if(gap<45||gap>140)return[0,'Ромбы наезжают или слишком далеко — между ними около 80 шагов (перо поднято).'];
-  return[1,'']}};
+  const gap1=cs[1].x-cs[0].x,gap2=cs[2].x-cs[1].x;
+  if(gap1<45||gap1>150||gap2<45||gap2>150)return[0,'Ромбы наезжают или слишком далеко — между ними около 80 шагов (перо поднято).'];
+  return[1,''];
+}};
+
 const STEPS=[
 {id:'line',shape:'line',title:'Линия',start:[-260,60],
  task:'Опусти перо и начерти <b>линию длиной 100 шагов</b>.',
@@ -769,7 +758,6 @@ const STEPS=[
  sol:[{k:'rep',n:3},{k:'pd'},{k:'rep',n:2},{k:'fd',n:40},{k:'rt',n:60},{k:'fd',n:40},{k:'rt',n:120},{k:'end'},{k:'pu'},{k:'fd',n:80},{k:'end'}],chk:CHK.band,
  txt:'Лента раппортов: цикл в цикле — настоящий костюмный алгоритм!'}];
 
-/* ============ УРОВЕНЬ 2: UI ============ */
 const SPD=[{ms:150,l:'медленно'},{ms:60,l:'обычно'},{ms:16,l:'быстро'}];
 let algoBuilt=false,running=false,runTO=null;
 
@@ -793,7 +781,7 @@ function buildPalette(){
   document.querySelectorAll('.blk').forEach(btn=>{
     btn.onclick=e=>{
       if(e.target.classList.contains('pnum'))return;
-      const k=btn.dataset.k,b=BLOCKS.find(x=>x.k===k); let n;
+      const k=btn.dataset.k,b=BLOCKS.find(x=>x.k===k);let n;
       if(b.n!==undefined){const inp=btn.querySelector('.pnum');n=Math.max(b.min,Math.min(b.max,parseInt(inp.value)||b.n))}
       addBlock(k,n);
     };
@@ -857,7 +845,7 @@ function renderProgram(){
     el.addEventListener('dragend',()=>{el.classList.remove('dragging');clearDropMarks()});
     el.addEventListener('dragover',e=>{e.preventDefault();const r=el.getBoundingClientRect();clearDropMarks();el.classList.add(e.clientY<r.top+r.height/2?'drop-before':'drop-after');});
     el.addEventListener('dragleave',()=>el.classList.remove('drop-before','drop-after'));
-    el.addEventListener('drop',e=>{e.preventDefault();const r=el.getBoundingClientRect();const index=+el.dataset.li+(e.clientY<r.top+r.height/2?0:1);clearDropMarks();try{dropProgramItem(JSON.parse(e.dataTransfer.getData('text/plain')),index)}catch(_){} });
+    el.addEventListener('drop',e=>{e.preventDefault();const r=el.getBoundingClientRect();const index=+el.dataset.li+(e.clientY<r.top+r.height/2?0:1);clearDropMarks();try{dropProgramItem(JSON.parse(e.dataTransfer.getData('text/plain')),index)}catch(_){}});
   });
   document.querySelectorAll('[data-i]').forEach(x=>{if(x.classList.contains('pltool'))x.onclick=()=>removeLine(+x.dataset.i)});
   document.querySelectorAll('[data-up]').forEach(x=>x.onclick=()=>moveLine(+x.dataset.up,-1));
@@ -872,14 +860,13 @@ function updateStepUI(){
   $('acap').textContent=st.cap;
   document.querySelectorAll('.adot').forEach((d,i)=>{
     d.classList.toggle('act',i===S.step);
-    d.classList.toggle('done',STEPS.findIndex(s=>S.stepsDone.has(s.id))>=i&&i!==S.step||S.stepsDone.has(STEPS[i].id));
+    d.classList.toggle('done',S.stepsDone.has(STEPS[i].id));
   });
   setStatus('готово к запуску','');
-  const hc=S.hintUsed?.[S.step]||0; if($('hint-mini'))$('hint-mini').textContent='('+hc+'/3)'; if($('hint-counter'))$('hint-counter').textContent='использовано '+hc+' / 3';
+  const hc=S.hintUsed?.[S.step]||0;if($('hint-mini'))$('hint-mini').textContent='('+hc+'/3)';if($('hint-counter'))$('hint-counter').textContent='использовано '+hc+' / 3';
 }
 function setStatus(t,cls){const s=$('sstat');s.textContent=t;s.className='sstat '+(cls||'')}
 
-/* ============ ИНТЕРПРЕТАТОР ============ */
 function compile(prog){
   const out=[],st=[];
   for(let i=0;i<prog.length;i++){const b=prog[i];
@@ -903,7 +890,6 @@ function execOp(t,tr,op){
   }
 }
 
-/* ============ СЦЕНА ============ */
 const SC=$('stage'),sc=SC.getContext('2d');
 const OX=SC.width/2,OY=SC.height/2;
 function drawScene(tr,t){
@@ -929,7 +915,6 @@ function highlight(li){
   const c=document.querySelector('.pl.cur');if(c)c.scrollIntoView({block:'nearest'});
 }
 
-/* ============ ЗАПУСК ============ */
 function run(){
   if(running){stopRun();return}
   if(!program.length){toast('Программа пуста — добавь блоки из палитры.','error');return}
@@ -964,6 +949,7 @@ function finishRun(tr){
   running=false;$('agrid').classList.remove('locked');
   $('btn-run').innerHTML=icon('play',16)+'<span>Запустить</span>';
   const st=STEPS[S.step],A=analyze(tr),r=st.chk(A);
+  console.log('[CHECK]',st.id,'strokes:',A.strokes.length,'closed:',A.closed.length,'sides:',A.sides.map(x=>Math.round(x)),'verdict:',r[0]?'OK':r[1]);
   if(r[0]){
     setStatus('отлично! фигура верна ✓','ok');SND.win();
     const rc=SC.getBoundingClientRect();
@@ -987,28 +973,17 @@ function finishRun(tr){
   }
 }
 
-/* ============ ПОДСКАЗКА / РЕШЕНИЕ ============ */
-function hintHTML(st){
-  let d=0,h='';
-  st.sol.forEach(b=>{
-    if(b.k==='end'){d--;h+='<div class="hl" style="--d:'+d+'">конец цикла</div>'}
-    else{h+='<div class="hl" style="--d:'+d+'">'+labelOf(b)+'</div>';if(b.k==='rep')d++}});
-  return '<div class="hseq">'+h+'</div>';
-}
 function openHint(){
   const i=Math.min(S.step,HINTS.length-1);
   if(!S.hintUsed)S.hintUsed=Array(STEPS.length).fill(0);
   if(S.hintUsed[i]>=HINTS[i].length){toast('Ты уже использовал все подсказки для этого задания.','error');return}
-  const n=S.hintUsed[i]++; if($('hint-mini'))$('hint-mini').textContent='('+S.hintUsed[i]+'/3)';
+  const n=S.hintUsed[i]++;if($('hint-mini'))$('hint-mini').textContent='('+S.hintUsed[i]+'/3)';
   const h=HINTS[i][n];
   $('hint-counter').textContent='использовано '+S.hintUsed[i]+' / '+HINTS[i].length;
   $('hbody').innerHTML='<div style="font:700 16px var(--fh);margin-bottom:7px">'+h[0]+'</div><p style="font-size:14px;line-height:1.6;color:var(--ink2)">'+h[1]+'</p>'+(n+1<HINTS[i].length?'<p style="margin-top:12px;font:600 11px var(--fm);color:var(--gold)">Есть ещё одна подсказка — но сначала попробуй сам.</p>':'<p style="margin-top:12px;font:600 11px var(--fm);color:var(--terra)">Это последняя подсказка. Дальше решение остаётся за тобой.</p>');
   $('ovh').classList.add('show');SND.click();
 }
 
-function insertSolution(){ toast('Готового решения здесь нет — собери алгоритм сам.','error'); }
-
-/* ============ ФИНАЛ ============ */
 function buildFinal(){
   const stars=ORDER.reduce((s,k)=>s+(S.done[k]||0),0);
   $('fmedal').innerHTML=medal(IC.trophy,'#B08828');
@@ -1022,39 +997,37 @@ function restart(){
   go('start');toast('Прогресс сброшен — новая игра!');
 }
 
-/* ============ СЛУШАТЕЛИ ============ */
- $('btn-start').onclick=()=>{SND.click();go('costumes')};
- $('bk1').onclick=()=>{SND.click();go('start')};
- $('bk2').onclick=()=>{SND.click();go('costumes')};
- $('bk3').onclick=()=>{SND.click();go('costumes')};
- $('bk4').onclick=()=>{SND.click();go('costumes')};
- $('brand').onclick=()=>go('start');
- $('cgrid').addEventListener('click',e=>{
+$('btn-start').onclick=()=>{SND.click();go('costumes')};
+$('bk1').onclick=()=>{SND.click();go('start')};
+$('bk2').onclick=()=>{SND.click();go('costumes')};
+$('bk3').onclick=()=>{SND.click();go('costumes')};
+$('bk4').onclick=()=>{SND.click();go('costumes')};
+$('brand').onclick=()=>go('start');
+$('cgrid').addEventListener('click',e=>{
   const c=e.target.closest('.ccard');if(c)openPairs(c.dataset.k)});
- $('btn-run').innerHTML=icon('play',16)+'<span>Запустить</span>';
- $('btn-run').onclick=run;
- $('btn-spd').innerHTML='<span>скорость: '+SPD[1].l+'</span>';
- $('btn-spd').onclick=()=>{S.speed=(S.speed+1)%SPD.length;
+$('btn-run').innerHTML=icon('play',16)+'<span>Запустить</span>';
+$('btn-run').onclick=run;
+$('btn-spd').innerHTML='<span>скорость: '+SPD[1].l+'</span>';
+$('btn-spd').onclick=()=>{S.speed=(S.speed+1)%SPD.length;
   $('btn-spd').innerHTML='<span>скорость: '+SPD[S.speed].l+'</span>';SND.click()};
- $('btn-clr').onclick=()=>{if(running)return;program=[];renderProgram();drawScene(null,null);
+$('btn-clr').onclick=()=>{if(running)return;program=[];renderProgram();drawScene(null,null);
   setStatus('программа очищена','');SND.click()};
- $('btn-hint').innerHTML=icon('bulb',15)+'<span>Подсказка <small id="hint-mini"></small></span>';
- $('btn-hint').onclick=openHint;
- $('hclose').onclick=()=>$('ovh').classList.remove('show');
- $('ovh').addEventListener('click',e=>{if(e.target===$('ovh'))$('ovh').classList.remove('show')});
- $('btn-restart').onclick=restart;
- $('btn-sound').innerHTML=icon('vol',18);
- $('btn-sound').onclick=()=>{muted=!muted;
+$('btn-hint').innerHTML=icon('bulb',15)+'<span>Подсказка <small id="hint-mini"></small></span>';
+$('btn-hint').onclick=openHint;
+$('hclose').onclick=()=>$('ovh').classList.remove('show');
+$('ovh').addEventListener('click',e=>{if(e.target===$('ovh'))$('ovh').classList.remove('show')});
+$('btn-restart').onclick=restart;
+$('btn-sound').innerHTML=icon('vol',18);
+$('btn-sound').onclick=()=>{muted=!muted;
   $('btn-sound').innerHTML=icon(muted?'volx':'vol',18);
   if(!muted)SND.pop()};
- $('btn-reset').innerHTML=icon('rst',18);
- $('btn-reset').onclick=()=>{
+$('btn-reset').innerHTML=icon('rst',18);
+$('btn-reset').onclick=()=>{
   if(!S.armR){S.armR=true;$('btn-reset').classList.add('arm');
     toast('Нажми ещё раз, чтобы сбросить весь прогресс.','error');
     setTimeout(()=>{S.armR=false;$('btn-reset').classList.remove('arm')},2600)}
   else location.reload()};
 
-/* стартовая отрисовка */
 drawScene(null,null);
 updateCostumes();
 </script>
