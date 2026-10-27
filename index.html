@@ -241,16 +241,8 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 table.ttab{width:100%;border-collapse:collapse;min-width:760px}
 .ttab th{font:600 10.5px var(--fm);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);padding:11px 13px;border-bottom:2px solid var(--line);background:var(--paper2);text-align:left}
 .ttab td{padding:10px 13px;border-bottom:1px solid var(--line2);vertical-align:middle}
-.ttab td:last-child .tpopmenu{
-  left: auto;
-  right: 0;
-}
-.ttab tr:last-child .tpopmenu{
-  top: auto;
-  bottom: calc(100% + 4px);
-  max-height: 180px;   /* keeps it under the header of a 4-row table */
-}
-
+.ttab td:last-child .tpopmenu{left:auto;right:0}
+.ttab tr:last-child .tpopmenu{top:auto;bottom:calc(100% + 4px);max-height:180px}
 .ttab tr:last-child td{border-bottom:none}
 .ttab tr.rdone td{background:#F4F9F3}
 .ttab .tname{font-weight:700;font-size:13.5px;min-width:130px}
@@ -371,48 +363,39 @@ table.ttab{width:100%;border-collapse:collapse;min-width:760px}
   .pass-sec h3 .n{width:18px!important;height:18px!important;font-size:9px!important}
   .pass-sec p{font-size:10px!important}
 
-  /* compact table */
   .ttab{min-width:0!important}
   .ttab th{font-size:8px!important;padding:3px 6px!important;letter-spacing:.08em!important}
   .ttab td{font-size:10px!important;padding:3px 6px!important}
   .ttab .tname{font-size:10.5px!important;min-width:0!important}
 
-  /* compact budget */
   .balbar{padding:4px 9px!important;font-size:10px!important;margin-bottom:5px!important;border-radius:6px!important}
   .rrow{padding:2px 6px!important;font-size:10px!important}
   .rtot{padding:4px 6px!important;font-size:10.5px!important}
   .rempty{padding:10px 8px!important;font-size:10px!important}
 
-  /* compact zones legend */
   .zsec{gap:4px!important;margin-top:3px!important}
   .ztag{font-size:8.5px!important;padding:2px 6px!important}
   .ztag svg{width:9px!important;height:9px!important}
 
-  /* compact stars */
   .stars svg{width:12px!important;height:12px!important}
   .stars{gap:1px!important}
 
-  /* compact checklist */
   .pcheck{padding:5px 8px!important;margin-bottom:3px!important;gap:7px!important;border-radius:8px!important}
   .pcheck .cb{width:14px!important;height:14px!important;border-width:1.5px!important}
   .pcheck .cb svg{width:9px!important;height:9px!important}
   .pcheck b{font-size:10.5px!important}
   .pcheck span span{font-size:9px!important}
 
-  /* smaller medal */
   .pass-medal svg{width:70px!important;height:auto!important}
 
-  /* page 2: bigger plan */
   .pass-page-2 .pass-sec{padding:10px 12px!important}
   .pass-page-2 .pass-sec h3{margin-bottom:8px!important}
   #pass-canvas{width:100%!important;max-width:100%!important;height:auto!important;
     border:1.5px solid var(--line)!important;border-radius:8px!important;
     -webkit-print-color-adjust:exact;print-color-adjust:exact}
 
-  /* two-col stays two-col */
   .pgrid2{grid-template-columns:1fr 1fr!important;gap:12px!important}
 
-  /* misc */
   .tscroll{border:1px solid var(--line)!important}
   .zsec{justify-content:flex-start!important}
 }
@@ -1170,7 +1153,7 @@ function defaultState() {
     m4: {},
     m5: { ptype: 'home', pname: '', tiles: [], cart: [] },
     checks: [false, false, false, false],
-    bonus: { eco: [], cyber: [] }
+    bonus: { eco: [], cyber: [], arch: [], algo: [], budget: [] }
   };
 }
 function loadState() {
@@ -1192,7 +1175,7 @@ function loadState() {
       m4: p.m4 || {},
       m5: { ptype: (p.m5 && p.m5.ptype) || 'home', pname: (p.m5 && p.m5.pname) || '', tiles: (p.m5 && p.m5.tiles) || [], cart: (p.m5 && p.m5.cart) || [] },
       checks: p.checks || d.checks,
-      bonus: p.bonus || d.bonus
+      bonus: Object.assign({ eco: [], cyber: [], arch: [], algo: [], budget: [] }, p.bonus || {})
     };
   } catch (e) { return defaultState(); }
 }
@@ -1364,7 +1347,7 @@ function go(scr) {
     root.appendChild(m5Screen());
   } else if (scr === 'final') {
     root.appendChild(passportScreen());
-  } else if (scr === 'eco' || scr === 'cyber') {
+  } else if (BONUS_QUESTS[scr]) {
     root.appendChild(bonusScreen(scr));
   }
   window.scrollTo(0, 0);
@@ -1449,10 +1432,27 @@ function renderMap() {
     (ad ? '' : '<span class="mlock">' + icon('lock', 26) + '</span>') +
     '</button></div>' +
     '<div class="tag" style="margin-top:30px">дополнительные испытания · можно играть в любом порядке</div>' +
-    '<div class="bonus-grid">' +
-    '<button class="bonus-card" data-m="eco"><span class="bonus-label">Бонус · экология и биология</span><div class="mico">' + icon('tree', 26) + '</div><h3>Эко-детектив</h3><p>Найди решения для здорового дома: воздух, влажность, сон и энергоэффективность. После каждого ответа — короткое объяснение.</p><div class="mstat"><span class="rit">' + coinIc(13) + ' до 15 рит</span><span>' + ((S.bonus && S.bonus.eco || []).length >= 5 ? 'пройдено ✓' : '5 задач →') + '</span></div></button>' +
-    '<button class="bonus-card" data-m="cyber"><span class="bonus-label">Бонус · информатика</span><div class="mico">' + icon('shield', 26) + '</div><h3>Кибер-детектив</h3><p>Раскрой цифровые ловушки, найди лишние данные и выбери безопасное решение для семейного паспорта.</p><div class="mstat"><span class="rit">' + coinIc(13) + ' до 15 рит</span><span>' + ((S.bonus && S.bonus.cyber || []).length >= 5 ? 'пройдено ✓' : '5 задач →') + '</span></div></button>' +
-    '</div>';
+    '<div class="bonus-grid">';
+
+  /* ---- Bonus quests: рендерим циклом по BONUS_QUESTS ---- */
+  Object.keys(BONUS_QUESTS).forEach(function (kind) {
+    var q = BONUS_QUESTS[kind];
+    var answered = (S.bonus && S.bonus[kind] || []).length;
+    var total = q.questions.length;
+    var done = answered >= total;
+    var progress = done
+      ? 'пройдено ✓'
+      : (answered > 0 ? answered + ' из ' + total + ' →' : total + ' задач →');
+    h += '<button class="bonus-card" data-m="' + kind + '">' +
+      '<span class="bonus-label">' + q.label + '</span>' +
+      '<div class="mico">' + icon(q.ic, 26) + '</div>' +
+      '<h3>' + q.title + '</h3>' +
+      '<p>' + q.desc + '</p>' +
+      '<div class="mstat"><span class="rit">' + coinIc(13) + ' до ' + (total * 3) + ' рит</span><span>' + progress + '</span></div>' +
+      '</button>';
+  });
+
+  h += '</div>';
   $('map-wrap').innerHTML = h;
   $('map-back').addEventListener('click', function () { go('start'); });
   qsa('#map-wrap [data-m]').forEach(function (b) {
@@ -3177,14 +3177,12 @@ function downloadPlan() {
 
       drawPlan(ctx, CELL * scale, PLAN_COLS, PLAN_ROWS, S.m5.tiles, '');
 
-      /* ---- footer strip ---- */
       var objName = (S.m5.pname && S.m5.pname.trim()) ||
         ('Наш ' + ((OBJ_TYPES.find(function (o) { return o.k === S.m5.ptype; }) || { name: 'дом' }).name.toLowerCase()));
       var team = S.team || 'Безымянные архитекторы';
 
       ctx.fillStyle = '#1A2238';
       ctx.fillRect(0, planH, planW, footerH);
-      /* thin gold rule on top of the footer */
       ctx.fillStyle = '#B08828';
       ctx.fillRect(0, planH, planW, Math.max(2, Math.round(scale * 0.9)));
 
@@ -3207,7 +3205,6 @@ function downloadPlan() {
       ctx.fillText('КОМАНДА «' + team.toUpperCase() + '»', planW - pad, planH + footerH * 0.40);
       ctx.fillText(dateStr, planW - pad, planH + footerH * 0.74);
 
-      /* badge mark */
       var bs = Math.round(footerH * 0.36);
       var bx = planW - pad - bs;
       var by = planH + footerH * 0.40 - bs * 0.5;
@@ -3220,7 +3217,6 @@ function downloadPlan() {
       ctx.fillRect(-bs * 0.24, -bs * 0.24, bs * 0.48, bs * 0.48);
       ctx.restore();
 
-      /* trigger download */
       var safeName = objName.toLowerCase()
         .replace(/[^a-zа-я0-9]+/gi, '-')
         .replace(/^-+|-+$/g, '')
@@ -3244,69 +3240,237 @@ function downloadPlan() {
   }
 }
 
-/* ================= BONUS QUESTS ================= */
+/* ================= BONUS QUESTS (5 × 8 заданий) ================= */
 var BONUS_QUESTS = {
+  /* ---------- 1. Эко-детектив · 8 заданий ---------- */
   eco: {
+    label: 'Бонус · экология и биология',
     title: 'Эко-детектив',
     subtitle: 'Биология + математика · здоровый дом',
+    desc: 'Площадь комнаты, энергопотребление, влажность, растения и здоровые привычки — реальные ситуации, а не теория.',
+    ic: 'tree',
     intro: 'Ты — эксперт по семейному пространству. Выбери лучшее решение и узнай, почему оно работает.',
     questions: [
-      {q:'В комнате часто запотевают окна, а в углу появилась плесень. Что сделать в первую очередь?',a:['Заклеить угол обоями','Проветривать, проверить влажность и устранить источник сырости','Сильнее нагреть комнату и закрыть окна','Поставить ароматизатор'],ok:1,why:'Конденсат появляется, когда влажный воздух охлаждается. Важно снизить лишнюю влагу, обеспечить воздухообмен и устранить причину сырости.'},
-      {q:'Комната 4 м × 3 м. Какова её площадь?',a:['7 м²','12 м²','14 м²','24 м²'],ok:1,why:'Площадь прямоугольника равна длине × ширине: 4 × 3 = 12 м².'},
-      {q:'Какое решение помогает снизить расход энергии зимой?',a:['Оставлять дверь на улицу открытой','Закрывать все вентиляционные отверстия навсегда','Утеплить окна и разумно регулировать отопление','Включать свет во всех комнатах'],ok:2,why:'Теплоизоляция уменьшает потери тепла. При этом вентиляцию нельзя полностью перекрывать: дому нужен свежий воздух.'},
-      {q:'Почему регулярный сон важен для семьи?',a:['Он помогает восстановлению организма и вниманию','Он заменяет физическую активность','Он делает проветривание ненужным','Он гарантирует, что никто не заболеет'],ok:0,why:'Во время сна организм восстанавливается, а мозг обрабатывает информацию. Сон — важная часть здоровых привычек, но не гарантия от болезней.'},
-      {q:'В комнате влажность 75%, а выбранный ориентир — не выше 60%. На сколько процентных пунктов превышение?',a:['10','15','25','135'],ok:1,why:'75 − 60 = 15 процентных пунктов. Это сравнение двух показателей, а не 15 процентов от исходного числа.'}
+      { q: 'В комнате часто запотевают окна, а в углу появилась плесень. Что сделать в первую очередь?',
+        a: ['Заклеить угол обоями', 'Проветривать, проверить влажность и устранить источник сырости', 'Сильнее нагреть комнату и закрыть окна', 'Поставить ароматизатор'],
+        ok: 1, why: 'Конденсат появляется, когда влажный воздух охлаждается. Важно снизить лишнюю влагу, обеспечить воздухообмен и устранить причину сырости.' },
+      { q: 'Комната 4 м × 3 м. Какова её площадь?',
+        a: ['7 м²', '12 м²', '14 м²', '24 м²'],
+        ok: 1, why: 'Площадь прямоугольника равна длине × ширине: 4 × 3 = 12 м².' },
+      { q: 'Какое решение помогает снизить расход энергии зимой?',
+        a: ['Оставлять дверь на улицу открытой', 'Закрывать все вентиляционные отверстия навсегда', 'Утеплить окна и разумно регулировать отопление', 'Включать свет во всех комнатах'],
+        ok: 2, why: 'Теплоизоляция уменьшает потери тепла. При этом вентиляцию нельзя полностью перекрывать: дому нужен свежий воздух.' },
+      { q: 'Почему регулярный сон важен для семьи?',
+        a: ['Он помогает восстановлению организма и вниманию', 'Он заменяет физическую активность', 'Он делает проветривание ненужным', 'Он гарантирует, что никто не заболеет'],
+        ok: 0, why: 'Во время сна организм восстанавливается, а мозг обрабатывает информацию. Сон — важная часть здоровых привычек, но не гарантия от болезней.' },
+      { q: 'В комнате влажность 75%, а выбранный ориентир — не выше 60%. На сколько процентных пунктов превышение?',
+        a: ['10', '15', '25', '135'],
+        ok: 1, why: '75 − 60 = 15 процентных пунктов. Это сравнение двух показателей, а не 15 процентов от исходного числа.' },
+      { q: 'Какое из этих растений безопасно поставить в детской комнате?',
+        a: ['Диффенбахия — её сок ядовит', 'Хлорофитум — безопасен и очищает воздух', 'Олеандр — все части ядовиты', 'Кактус с длинными колючками'],
+        ok: 1, why: 'Хлорофитум безопасен и известен как «воздушный фильтр». Диффенбахия и олеандр токсичны, а колючий кактус легко поранит ребёнка.' },
+      { q: 'Комната 3 м × 4 м, высота потолка 2,5 м. Каков объём воздуха в ней?',
+        a: ['9 м³', '12 м³', '30 м³', '34 м³'],
+        ok: 2, why: 'Объём = длина × ширина × высота: 3 × 4 × 2,5 = 30 м³. По объёму считают норму вентиляции.' },
+      { q: 'Какой уровень влажности в комнате считается оптимальным для здоровья?',
+        a: ['10–20%', '40–60%', '70–80%', '90–100%'],
+        ok: 1, why: 'При 40–60% кожа и слизистые не пересыхают и при этом не появляется плесень. Слишком сухо и слишком влажно одинаково вредно.' }
     ]
   },
+
+  /* ---------- 2. Кибер-детектив · 8 заданий ---------- */
   cyber: {
+    label: 'Бонус · информатика',
     title: 'Кибер-детектив',
     subtitle: 'Информатика · данные и безопасность',
+    desc: 'Фишинг, пароли, личные данные и разрешения приложений — раскрой цифровые ловушки и выбери безопасное действие.',
+    ic: 'shield',
     intro: 'Проверь, какие данные полезны для проекта, а какие лучше оставить личными.',
     questions: [
-      {q:'Что безопаснее добавить в цифровой паспорт проекта?',a:['Домашний адрес ребёнка','Пароль от семейного Wi-Fi','Условную схему зон и их назначение','Номер банковской карты'],ok:2,why:'Для проектирования нужны данные о функциях пространства, а не секреты семьи. Используй условные обозначения и не публикуй личную информацию.'},
-      {q:'Зачем таблице нужны заголовки столбцов?',a:['Чтобы данные было проще понимать и сравнивать','Чтобы таблица выглядела длиннее','Чтобы скрыть ошибки','Чтобы заменить все объяснения'],ok:0,why:'Заголовки показывают, что означает каждое значение. Это помогает читать, сравнивать и проверять данные.'},
-      {q:'Команда записала: «Каждую субботу семья готовит вместе на кухне». Что это?',a:['Пароль','Описание традиции без лишних персональных данных','Точный адрес','Банковские данные'],ok:1,why:'Это полезное описание привычки. Оно помогает понять потребность в общей зоне, не раскрывая чувствительные сведения.'},
-      {q:'Какой алгоритм составлен правильно?',a:['Начать → выбрать зону → проверить свободное место → поставить объект','Поставить объект в любое место, даже занятое','Удалить все зоны → закончить','Покупать материалы, не проверяя баланс'],ok:0,why:'Алгоритм — точная последовательность действий. Проверка свободного места до размещения помогает избежать ошибки.'},
-      {q:'Вы получили ссылку с просьбой срочно ввести пароль. Что делать?',a:['Ввести пароль, чтобы не потерять доступ','Переслать всем друзьям','Не вводить данные и проверить источник через официальный канал','Использовать пароль одноклассника'],ok:2,why:'Срочность и запрос пароля могут быть признаками фишинга. Не переходи по сомнительным ссылкам и проверяй сообщение независимо.'}
+      { q: 'Что безопаснее добавить в цифровой паспорт проекта?',
+        a: ['Домашний адрес ребёнка', 'Пароль от семейного Wi-Fi', 'Условную схему зон и их назначение', 'Номер банковской карты'],
+        ok: 2, why: 'Для проектирования нужны данные о функциях пространства, а не секреты семьи. Используй условные обозначения и не публикуй личную информацию.' },
+      { q: 'Зачем таблице нужны заголовки столбцов?',
+        a: ['Чтобы данные было проще понимать и сравнивать', 'Чтобы таблица выглядела длиннее', 'Чтобы скрыть ошибки', 'Чтобы заменить все объяснения'],
+        ok: 0, why: 'Заголовки показывают, что означает каждое значение. Это помогает читать, сравнивать и проверять данные.' },
+      { q: 'Команда записала: «Каждую субботу семья готовит вместе на кухне». Что это?',
+        a: ['Пароль', 'Описание традиции без лишних персональных данных', 'Точный адрес', 'Банковские данные'],
+        ok: 1, why: 'Это полезное описание привычки. Оно помогает понять потребность в общей зоне, не раскрывая чувствительные сведения.' },
+      { q: 'Какой алгоритм составлен правильно?',
+        a: ['Начать → выбрать зону → проверить свободное место → поставить объект', 'Поставить объект в любое место, даже занятое', 'Удалить все зоны → закончить', 'Покупать материалы, не проверяя баланс'],
+        ok: 0, why: 'Алгоритм — точная последовательность действий. Проверка свободного места до размещения помогает избежать ошибки.' },
+      { q: 'Вы получили ссылку с просьбой срочно ввести пароль. Что делать?',
+        a: ['Ввести пароль, чтобы не потерять доступ', 'Переслать всем друзьям', 'Не вводить данные и проверить источник через официальный канал', 'Использовать пароль одноклассника'],
+        ok: 2, why: 'Срочность и запрос пароля могут быть признаками фишинга. Не переходи по сомнительным ссылкам и проверяй сообщение независимо.' },
+      { q: 'Какой пароль самый надёжный?',
+        a: ['12345678 — легко запомнить', 'qwerty — просто набирать', 'имя_и_год_рождения', 'Длинная фраза из нескольких слов и разных символов'],
+        ok: 3, why: 'Длина важнее сложности: фраза из нескольких слов и разных символов надёжнее короткого «сложного» пароля. Пароль не должен содержать личных данных.' },
+      { q: 'Приложение «Фонарик» просит доступ к контактам и SMS. Что разумнее сделать?',
+        a: ['Разрешить всё — вдруг пригодится', 'Отказать и удалить приложение: фонарику не нужны контакты', 'Разрешить только SMS, но не контакты', 'Разрешить и больше не думать об этом'],
+        ok: 1, why: 'Фонарик не должен читать контакты и сообщения. Слишком широкие разрешения — признак небезопасного приложения. Лучше отказаться и удалить.' },
+      { q: 'Ты публикуешь фото с домашним питомцем. Что стоит проверить перед публикацией?',
+        a: ['Только красиво ли получилось фото', 'Геометку и видимые детали: адрес на ошейнике, вывеску дома, номер квартиры', 'Сколько лайков уже собрал похожий пост', 'Ничего — питомец же не человек'],
+        ok: 1, why: 'Даже невинная фотография может выдать адрес через геометку, номер на ошейнике или узнаваемый подъезд. Личные данные лучше убрать.' }
+    ]
+  },
+
+  /* ---------- 3. Архитектор пространства · 8 заданий ---------- */
+  arch: {
+    label: 'Бонус · математика и черчение',
+    title: 'Архитектор пространства',
+    subtitle: 'Геометрия · масштаб · планировка',
+    desc: 'Площадь, периметр, масштаб, проходы и грамотное размещение мебели — думай как настоящий проектировщик.',
+    ic: 'grid',
+    intro: 'Ты — архитектор семейного пространства. Реши задачи о реальной комнате и найди лучшее решение для семьи.',
+    questions: [
+      { q: 'На плане комната 6×4 клетки, масштаб: 1 клетка = 1 м. Какова площадь комнаты?',
+        a: ['10 м²', '20 м²', '24 м²', '30 м²'],
+        ok: 2, why: 'Площадь = 6 м × 4 м = 24 м². Клетки на плане переводятся в метры по масштабу.' },
+      { q: 'Комната 5 м × 3 м. Каков её периметр?',
+        a: ['8 м', '15 м', '16 м', '30 м'],
+        ok: 2, why: 'Периметр = 2 × (5 + 3) = 16 м. Это длина плинтуса по всему контуру комнаты.' },
+      { q: 'Какой ширины дверной проём удобен для семьи с детской коляской?',
+        a: ['50 см', '60 см', '90 см', '150 см'],
+        ok: 2, why: 'Стандартный удобный проём — 80–90 см. Через 90 см свободно проходит коляска и человек с сумками.' },
+      { q: 'Какое расстояние нужно оставить для свободного прохода между мебелью?',
+        a: ['10–20 см', '30–40 см', '60–80 см', '150–200 см'],
+        ok: 2, why: 'Для комфортного прохода одного человека нужно 60–80 см. Меньше — придётся протискиваться, больше — тратится полезная площадь.' },
+      { q: 'Комната 4 м × 3 м, кровать 2 м × 1,6 м стоит у стены. Сколько м² свободной площади остаётся?',
+        a: ['3,2 м²', '8,8 м²', '10 м²', '12 м²'],
+        ok: 1, why: 'Площадь комнаты 4 × 3 = 12 м². Кровать занимает 2 × 1,6 = 3,2 м². Свободно: 12 − 3,2 = 8,8 м².' },
+      { q: 'Масштаб плана 1:100. Отрезок на плане 4 см. Сколько это в реальности?',
+        a: ['4 см', '40 см', '4 м', '40 м'],
+        ok: 2, why: 'При масштабе 1:100 1 см на плане = 100 см = 1 м в реальности. Значит, 4 см → 4 м.' },
+      { q: 'Куда лучше поставить рабочий стол школьника?',
+        a: ['У окна — дневной свет падает слева или спереди', 'В тёмном углу за шкафом', 'У входной двери, чтобы не отвлекаться', 'Рядом с телевизором'],
+        ok: 0, why: 'Естественный свет слева (для правшей) или спереди уменьшает утомляемость глаз. У окна — самое удачное место для стола.' },
+      { q: 'Что важнее всего для безопасной детской комнаты?',
+        a: ['Как можно больше мягких игрушек', 'Крепкая мебель без острых углов и заглушки на розетках', 'Большой пушистый ковёр', 'Тёмные плотные шторы'],
+        ok: 1, why: 'Безопасность важнее декора: устойчивая мебель без острых углов, защита розеток и надёжное крепление шкафов к стене — база детской.' }
+    ]
+  },
+
+  /* ---------- 4. Алгоритм-лабиринт · 8 заданий ---------- */
+  algo: {
+    label: 'Бонус · информатика',
+    title: 'Алгоритм-лабиринт',
+    subtitle: 'Алгоритмы · циклы · отладка',
+    desc: 'Робот, команды, циклы, ветвления и отладка — анализируй последовательности действий и ищи ошибки.',
+    ic: 'robot',
+    intro: 'Ты — программист робота-гида. Разберись в командах, найди ошибки и предскажи результат.',
+    questions: [
+      { q: 'Робот смотрит на север. Куда он будет смотреть после команды «направо»?',
+        a: ['На север', 'На восток', 'На юг', 'На запад'],
+        ok: 1, why: 'Поворот направо — это поворот по часовой стрелке на 90°. С севера направо — на восток.' },
+      { q: 'Сколько шагов сделает робот по программе: «повтори 3 [вперёд 2]»?',
+        a: ['2 шага', '3 шага', '5 шагов', '6 шагов'],
+        ok: 3, why: 'Внутри цикла 2 шага, цикл повторяется 3 раза: 2 × 3 = 6 шагов. Цикл экономит блоки программы.' },
+      { q: 'Программа: вперёд 2, направо, вперёд 1, налево, вперёд 2. Сколько всего шагов сделает робот?',
+        a: ['2 шага', '3 шага', '5 шагов', '6 шагов'],
+        ok: 2, why: 'Шаги суммируются независимо от поворотов: 2 + 1 + 2 = 5 шагов. Повороты на количество шагов не влияют.' },
+      { q: 'В чём ошибка программы: «повтори 3 [вперёд 2]» без блока «конец цикла»?',
+        a: ['Ошибки нет', 'Цикл не закрыт — программа не выполнится', 'Слишком много повторов', 'Нужно было «повтори 2»'],
+        ok: 1, why: 'Каждый блок «повтори» должен закрываться блоком «конец цикла». Иначе программа не знает, какие команды входят в цикл.' },
+      { q: 'Программа: «повтори 4 [вперёд 1, направо]». Какую фигуру опишет робот?',
+        a: ['Круг', 'Квадрат', 'Треугольник', 'Прямую линию'],
+        ok: 1, why: 'Четыре шага с поворотом на 90° после каждого — это квадрат со стороной 1 шаг. Повторяющийся прямоугольный маршрут.' },
+      { q: 'Робот упёрся в стену. Что произойдёт, если продолжить команду «вперёд»?',
+        a: ['Пройдёт сквозь стену', 'Остановится или выдаст ошибку', 'Телепортируется на старт', 'Ничего не изменится'],
+        ok: 1, why: 'Стена — препятствие. Робот не может пройти сквозь неё, программа должна быть остановлена или сообщить об ошибке. Это повод проверить маршрут.' },
+      { q: 'Что такое отладка программы?',
+        a: ['Удаление всех блоков', 'Поиск и исправление ошибок в программе', 'Добавление новых команд', 'Запуск программы 100 раз подряд'],
+        ok: 1, why: 'Отладка — это целенаправленный поиск ошибок и их исправление. Запуск «просто ещё раз» без анализа ошибку не исправит.' },
+      { q: 'Какая программа нарисует прямоугольник 4×2?',
+        a: ['повтори 2 [вперёд 4, направо, вперёд 2, направо]', 'повтори 4 [вперёд 2, направо]', 'вперёд 4, направо, вперёд 2, направо', 'повтори 2 [вперёд 4, направо]'],
+        ok: 0, why: 'Прямоугольник — это 2 повторения маршрута «длинная сторона, поворот, короткая сторона, поворот». Остальные варианты дадут квадрат или незамкнутую фигуру.' }
+    ]
+  },
+
+  /* ---------- 5. Бюджетный босс · 8 заданий ---------- */
+  budget: {
+    label: 'Бонус · математика и финансы',
+    title: 'Бюджетный босс',
+    subtitle: 'Считай · выбирай · приоритизируй',
+    desc: 'Покупки, скидки, остаток бюджета и выбор приоритетов — важно не только считать, но и принимать разумные решения.',
+    ic: 'coin',
+    intro: 'Ты — менеджер проекта. Считай бюджет семьи и принимай разумные решения о покупках.',
+    questions: [
+      { q: 'У тебя 50 риткоинов. Ты купил краски за 9 и клей за 5. Сколько осталось?',
+        a: ['30 риткоинов', '36 риткоинов', '44 риткоина', '46 риткоинов'],
+        ok: 1, why: '50 − (9 + 5) = 50 − 14 = 36 риткоинов. Сначала считаем сумму покупок, потом вычитаем из бюджета.' },
+      { q: 'Товар стоит 20 риткоинов, скидка 25%. Сколько он будет стоить?',
+        a: ['5 риткоинов', '15 риткоинов', '18 риткоинов', '25 риткоинов'],
+        ok: 1, why: '25% от 20 = 5 риткоинов. Новая цена: 20 − 5 = 15 риткоинов. Или сразу: 20 × 0,75 = 15.' },
+      { q: 'У тебя 30 риткоинов. Хочешь купить качели (10), гамак (9) и LED-огоньки (12). Хватит ли бюджета?',
+        a: ['Да, ещё останется 1 риткоин', 'Нет, не хватает 1 риткоина', 'Нет, не хватает 10 риткоинов', 'Да, хватит с запасом'],
+        ok: 1, why: '10 + 9 + 12 = 31 риткоин. Бюджет 30 — не хватает 1 риткоина. Можно отказаться от одной покупки или заработать ещё.' },
+      { q: 'Что важнее купить в первую очередь для модели семейного пространства?',
+        a: ['Красивую вазу для украшения', 'Базовые материалы — картон и клей', 'Ещё одну фигурку семьи', 'Гирлянду LED-огоньков'],
+        ok: 1, why: 'Без базовых материалов (картон, клей) модель не построить. Сначала — необходимое, потом — украшения и дополнительные детали.' },
+      { q: 'Скидка 10% на покупку от 20 риткоинов. Ты покупаешь материалы на 30. Сколько заплатишь?',
+        a: ['20 риткоинов', '27 риткоинов', '30 риткоинов', '33 риткоина'],
+        ok: 1, why: '10% от 30 = 3 риткоина. Цена со скидкой: 30 − 3 = 27. Скидка уменьшает сумму, а не увеличивает.' },
+      { q: 'Бюджет 40 риткоинов. Куплено три товара по 8 и один за 12. Сколько осталось?',
+        a: ['0 риткоинов', '4 риткоина', '8 риткоинов', '12 риткоинов'],
+        ok: 1, why: '3 × 8 = 24, плюс 12 = 36. Остаток: 40 − 36 = 4 риткоина. Меньше 8 — значит, на ещё один средний товар не хватит.' },
+      { q: 'Ты хочешь купить товары на 35 риткоинов, а у тебя только 28. Сколько ещё нужно заработать?',
+        a: ['3 риткоина', '7 риткоинов', '35 риткоинов', '63 риткоина'],
+        ok: 1, why: '35 − 28 = 7 риткоинов. Это разница между желаемой суммой и текущим балансом.' },
+      { q: 'Что значит «приоритет» при покупках?',
+        a: ['Купить самое дорогое', 'Купить самое дешёвое', 'Сначала необходимое, потом желаемое', 'Купить всё сразу, пока есть деньги'],
+        ok: 2, why: 'Приоритет — это очерёдность по важности. Сначала закрываем базовые потребности (материалы для работы), потом — желания (украшения).' }
     ]
   }
 };
+
 function bonusScreen(kind) {
   var sec = document.createElement('section'); sec.className = 'screen active';
-  var qset = BONUS_QUESTS[kind], answers = (S.bonus && S.bonus[kind]) || [];
-  var idx = answers.length, done = idx >= qset.questions.length, last = done ? null : qset.questions[idx];
+  var qset = BONUS_QUESTS[kind];
+  if (!qset) { sec.innerHTML = '<div class="wrap"><p>Квест не найден</p></div>'; return sec; }
+  var total = qset.questions.length;
+  var answers = (S.bonus && S.bonus[kind]) || [];
+  var idx = answers.length, done = idx >= total, last = done ? null : qset.questions[idx];
   var score = answers.filter(function (a, i) { return a === qset.questions[i].ok; }).length;
-  var h = '<div class="wrap"><button class="lback" data-act="map">← К карте миссий</button><div class="tag">Бонусная миссия · Rittel School</div><h2>'+qset.title+'</h2><p class="lead">'+qset.subtitle+'</p><div class="quiz-shell">';
+  var h = '<div class="wrap"><button class="lback" data-act="map">← К карте миссий</button><div class="tag">Бонусная миссия · Rittel School</div><h2>' + qset.title + '</h2><p class="lead">' + qset.subtitle + '</p><div class="quiz-shell">';
   if (done) {
-    h += '<div class="tag">испытание завершено</div><h2 style="font-size:32px">Дело раскрыто!</h2><p class="lead">'+score+' из 5 верных ответов. '+(score>=4?'Отличная работа — ты умеешь применять знания!':'Хорошая тренировка: перечитай объяснения и попробуй ещё раз.')+'</p><div class="quiz-feedback">Главное — не просто угадать, а объяснить, почему решение правильное. Эти знания пригодятся при создании модели семейного пространства.</div><button class="btn bp" data-bonus-retry="'+kind+'">Пройти ещё раз</button> <button class="btn bd" data-act="map">Вернуться к миссиям</button>';
+    h += '<div class="tag">испытание завершено</div><h2 style="font-size:32px">Дело раскрыто!</h2><p class="lead">' + score + ' из ' + total + ' верных ответов. ' + (score >= Math.ceil(total * 0.8) ? 'Отличная работа — ты умеешь применять знания!' : 'Хорошая тренировка: перечитай объяснения и попробуй ещё раз.') + '</p><div class="quiz-feedback">Главное — не просто угадать, а объяснить, почему решение правильное. Эти знания пригодятся при создании модели семейного пространства.</div><button class="btn bp" data-bonus-retry="' + kind + '">Пройти ещё раз</button> <button class="btn bd" data-act="map">Вернуться к миссиям</button>';
   } else {
-    h += '<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><b>Задача '+(idx+1)+' из 5</b><span class="chip">'+score+' верно</span></div><div class="quiz-progress"><span style="width:'+(idx*20)+'%"></span></div><p style="color:var(--ink2);font-size:13px;margin-bottom:12px">'+qset.intro+'</p><h3 style="font:700 clamp(21px,3vw,28px)/1.25 var(--fh)">'+last.q+'</h3><div class="quiz-options">'+last.a.map(function(opt,i){return '<button class="quiz-option" data-answer="'+i+'">'+opt+'</button>';}).join('')+'</div><div id="quiz-feedback"></div><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span style="font:500 11px var(--fm);color:var(--ink2)">За прохождение: до 15 риткоинов</span><button class="btn bp" id="quiz-next" disabled>Следующая задача →</button></div>';
+    var progressPct = Math.round((idx * 100) / total);
+    h += '<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><b>Задача ' + (idx + 1) + ' из ' + total + '</b><span class="chip">' + score + ' верно</span></div><div class="quiz-progress"><span style="width:' + progressPct + '%"></span></div><p style="color:var(--ink2);font-size:13px;margin-bottom:12px">' + qset.intro + '</p><h3 style="font:700 clamp(21px,3vw,28px)/1.25 var(--fh)">' + last.q + '</h3><div class="quiz-options">' + last.a.map(function (opt, i) { return '<button class="quiz-option" data-answer="' + i + '">' + opt + '</button>'; }).join('') + '</div><div id="quiz-feedback"></div><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span style="font:500 11px var(--fm);color:var(--ink2)">За прохождение: до ' + (total * 3) + ' риткоинов</span><button class="btn bp" id="quiz-next" disabled>Следующая задача →</button></div>';
   }
-  h += '</div></div>'; sec.innerHTML=h;
-  qsa('[data-act="map"]',sec).forEach(function(b){b.addEventListener('click',function(){go('map');});});
-  var retry=qs('[data-bonus-retry]',sec);
-  if(retry) retry.addEventListener('click',function(){patch({bonus:Object.assign({},S.bonus,{[kind]:[]})});go(kind);});
-  if(last){
-    var chosen=null;
-    qsa('[data-answer]',sec).forEach(function(b){
-      b.addEventListener('click',function(){
-        if(chosen!==null)return; chosen=Number(b.getAttribute('data-answer'));
-        qsa('[data-answer]',sec).forEach(function(opt){opt.disabled=true;});
-        var correct=chosen===last.ok;
-        b.classList.add(correct?'correct':'wrong');
-        qsa('[data-answer]',sec)[last.ok].classList.add('correct');
-        qs('#quiz-feedback',sec).innerHTML='<div class="quiz-feedback"><b>'+(correct?'Верно!':'Разберёмся:')+'</b> '+last.why+'</div>';
-        qs('#quiz-next',sec).disabled=false;
+  h += '</div></div>'; sec.innerHTML = h;
+  qsa('[data-act="map"]', sec).forEach(function (b) { b.addEventListener('click', function () { go('map'); }); });
+  var retry = qs('[data-bonus-retry]', sec);
+  if (retry) retry.addEventListener('click', function () {
+    var nb = Object.assign({}, S.bonus);
+    nb[kind] = [];
+    patch({ bonus: nb });
+    go(kind);
+  });
+  if (last) {
+    var chosen = null;
+    qsa('[data-answer]', sec).forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (chosen !== null) return; chosen = Number(b.getAttribute('data-answer'));
+        qsa('[data-answer]', sec).forEach(function (opt) { opt.disabled = true; });
+        var correct = chosen === last.ok;
+        b.classList.add(correct ? 'correct' : 'wrong');
+        qsa('[data-answer]', sec)[last.ok].classList.add('correct');
+        qs('#quiz-feedback', sec).innerHTML = '<div class="quiz-feedback"><b>' + (correct ? 'Верно!' : 'Разберёмся:') + '</b> ' + last.why + '</div>';
+        qs('#quiz-next', sec).disabled = false;
       });
     });
-    qs('#quiz-next',sec).addEventListener('click',function(){
-      var next=(S.bonus&&S.bonus[kind]||[]).concat([chosen]);
-      patch({bonus:Object.assign({},S.bonus,(function(){var o={};o[kind]=next;return o;})())});
-      if(next.length===5){
-        var points=next.reduce(function(n,a,i){return n+(a===qset.questions[i].ok?1:0);},0);
-        var key='bonus:'+kind;
-        if(S.awarded.indexOf(key)<0) awardOnce(key,Math.max(3,points*3));
-        SND.win();go(kind);
+    qs('#quiz-next', sec).addEventListener('click', function () {
+      var prev = (S.bonus && S.bonus[kind]) || [];
+      var next = prev.concat([chosen]);
+      var nb = Object.assign({}, S.bonus);
+      nb[kind] = next;
+      patch({ bonus: nb });
+      if (next.length === total) {
+        var points = next.reduce(function (n, a, i) { return n + (a === qset.questions[i].ok ? 1 : 0); }, 0);
+        var key = 'bonus:' + kind;
+        if (S.awarded.indexOf(key) < 0) awardOnce(key, Math.max(3, points * 3));
+        SND.win(); go(kind);
       } else go(kind);
     });
   }
@@ -3332,7 +3496,6 @@ function passportScreen() {
   var restartBtn = qs('[data-act="restart"]', sec);
   if (restartBtn) restartBtn.addEventListener('click', passRestart);
 
-  /* draw high-res plan */
   var cv = qs('#pass-canvas', sec);
   if (cv) {
     var ctx = cv.getContext('2d');
@@ -3364,7 +3527,6 @@ function passportHTML() {
     '<p class="lead no-print" style="margin-bottom:26px">Проверьте все разделы, отметьте готовность к защите и распечатайте паспорт — он понадобится на презентации модели. Печать — ровно две страницы: сводка и схема.</p>' +
     '<div class="pass" id="passport">';
 
-  /* ===================== PAGE 1 ===================== */
   h += '<div class="pass-page pass-page-1">' +
     '<div class="pass-h">' +
     '<div>' +
@@ -3375,7 +3537,6 @@ function passportHTML() {
     '<div class="pmeta">Объект: <b style="color:#FFFDF7">' + esc(objName) + '</b><br>Тип: ' + ot.name.toLowerCase() + '<br>Баланс: ' + bal + ' рит</div>' +
     '</div>';
 
-  /* 1. Mission results + medal (2-col) */
   var starArr = [stars.m1, stars.m2, stars.m3, stars.m4, stars.m5];
   h += '<div class="pass-sec"><h3><span class="n">1</span> Итоги миссий</h3>' +
     '<div class="pgrid2" style="align-items:center">' +
@@ -3394,7 +3555,6 @@ function passportHTML() {
     '<div style="font:500 9.5px var(--fm);color:var(--ink2);letter-spacing:.08em;margin-top:2px">RITTEL SCHOOL · СЕМЕЙНЫЙ КОД</div>' +
     '</div></div></div>';
 
-  /* 2. Budget */
   h += '<div class="pass-sec"><h3><span class="n">2</span> Бюджет в риткоинах</h3>' +
     '<div class="balbar"><span>Заработано: ' + S.rit + ' рит</span><span>Потрачено: ' + S.spent + ' рит</span><span>Остаток: ' + bal + ' рит</span></div>' +
     '<div class="pgrid2"><div>';
@@ -3414,7 +3574,6 @@ function passportHTML() {
     '<p style="font-size:12px;color:var(--ink2);margin-top:8px">Покупки подобраны под зоны схемы: материалы помогут построить модель и оформить каждую зону.</p>' +
     '</div></div></div>';
 
-  /* 3. Traditions table */
   h += '<div class="pass-sec"><h3><span class="n">3</span> Таблица традиций</h3>' +
     '<div class="tscroll"><table class="ttab"><thead><tr><th>Традиция</th>' +
     TCOLS.map(function (c) { return '<th>' + c.label + '</th>'; }).join('') +
@@ -3432,7 +3591,6 @@ function passportHTML() {
     '<p style="font-size:11px;color:var(--ink2);margin-top:6px;font:500 11px var(--fm)">Данные обезличены: только «кто», «что», «где», «когда» — без имён, адресов и документов.</p>' +
     '</div>';
 
-  /* 4. Defense checklist */
   h += '<div class="pass-sec"><h3><span class="n">4</span> Чеклист мини-защиты</h3>';
   DEFENSE_CHECKS.forEach(function (c, i) {
     h += '<button class="pcheck' + (S.checks[i] ? ' on' : '') + '" data-check="' + i + '">' +
@@ -3443,9 +3601,8 @@ function passportHTML() {
     S.checks.filter(Boolean).length + ' из 4 — команда готова к презентации модели.</p>' +
     '</div>';
 
-  h += '</div>'; /* /page 1 */
+  h += '</div>';
 
-  /* ===================== PAGE 2 ===================== */
   h += '<div class="pass-page pass-page-2">' +
     '<div class="pass-h">' +
     '<div>' +
@@ -3468,9 +3625,9 @@ function passportHTML() {
     }).join('') + '</div>' +
     '<p style="font-size:12px;color:var(--ink2);text-align:center;max-width:70ch;margin:0 auto">Зоны размечены командой: традиции, отдых, общение и будущее. Расположение зон и выбранные материалы команда объяснит на защите модели.</p>' +
     '</div>' +
-    '</div>'; /* /page 2 */
+    '</div>';
 
-  h += '</div>' + /* /passport */
+  h += '</div>' +
     '<div class="pact no-print">' +
     '<button class="btn bp blg" data-act="print">' + icon('print', 17) + '<span>Распечатать / PDF</span></button>' +
     '<button class="btn bd" data-act="download">' + icon('grid', 17) + '<span>Скачать план (PNG)</span></button>' +
