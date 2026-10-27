@@ -241,6 +241,16 @@ h2{font:700 clamp(26px,3.2vw,36px)/1.15 var(--fh);margin-bottom:10px}h3{font:700
 table.ttab{width:100%;border-collapse:collapse;min-width:760px}
 .ttab th{font:600 10.5px var(--fm);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);padding:11px 13px;border-bottom:2px solid var(--line);background:var(--paper2);text-align:left}
 .ttab td{padding:10px 13px;border-bottom:1px solid var(--line2);vertical-align:middle}
+.ttab td:last-child .tpopmenu{
+  left: auto;
+  right: 0;
+}
+.ttab tr:last-child .tpopmenu{
+  top: auto;
+  bottom: calc(100% + 4px);
+  max-height: 180px;   /* keeps it under the header of a 4-row table */
+}
+
 .ttab tr:last-child td{border-bottom:none}
 .ttab tr.rdone td{background:#F4F9F3}
 .ttab .tname{font-weight:700;font-size:13.5px;min-width:130px}
@@ -1939,6 +1949,20 @@ function m3Screen() {
 }
 function m3Render() {
   M3.sec.innerHTML = M3.picking ? m3PickingHTML() : m3TableHTML();
+  var btn = M3.sec.querySelector('.tcellbtn[data-cell="' + M3.open + '"]');
+  var pop = M3.sec.querySelector('.tpopmenu');
+  if (btn && pop) {
+    var r = btn.getBoundingClientRect();
+    var w = 200, h = 240, pad = 8;
+    var left = Math.min(r.left, window.innerWidth - w - pad);
+    var top  = r.bottom + 4;
+    if (top + h > window.innerHeight - pad) top = r.top - h - 4;
+    pop.style.position = 'fixed';
+    pop.style.left = left + 'px';
+    pop.style.top  = top + 'px';
+    pop.style.right = 'auto';
+    pop.style.bottom = 'auto';
+  }
   if (M3.picking) {
     qsa('[data-act="map"]', M3.sec).forEach(function (b) {
       b.addEventListener('click', function () { go('map'); });
